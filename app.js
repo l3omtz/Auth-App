@@ -6,6 +6,19 @@ const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
 
+// Create mongo database
+const mongooseDB = 'mongodb://admin:admin@ds155428.mlab.com:55428/tiktalk2go';
+// Connect to database with mongoose
+mongoose.connect(mongooseDB);
+
+var conn = mongoose.connection;
+// On connection
+conn.on('connected', () =>{
+  console.log("connected to database");
+});
+// On error
+conn.on('error', console.error.bind(console, 'connection error:'));
+
 // Init our app variable through express
 const app = express();
 
