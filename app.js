@@ -9,6 +9,9 @@ const mongoose = require('mongoose');
 // Init our app variable through express
 const app = express();
 
+// Users routes file
+const users = require('./routes/users');
+
 // var for port we want to use
 const port = 3000;
 
@@ -18,9 +21,12 @@ app.use(cors());
 // Body parser middleware -- parses json for us to use
 app.use(bodyParser.json());
 
+// Any routes with users will go to usres/ link
+app.use('/users', users)
+
 // Create Index start route
 app.get('/', (req, res, err) => {
-  res.send('Invalid Endpoint');
+  res.send('Invalid Endpoints');
 });
 
 // Call app var to listen to our port -- Starts Server
