@@ -18,6 +18,9 @@ const port = 3000;
 // Cors middleware -- For server on diffrent domains
 app.use(cors());
 
+// Set static Angular folder ** Replaces & joins to our client side **
+app.use(express.static(path.join(__dirname, 'client')));
+
 // Body parser middleware -- parses json for us to use
 app.use(bodyParser.json());
 
