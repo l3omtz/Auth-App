@@ -14,10 +14,12 @@ mongoose.connect(mongooseDB);
 var conn = mongoose.connection;
 // On connection
 conn.on('connected', () =>{
-  console.log("connected to database");
+  console.log('connected to database');
 });
 // On error
-conn.on('error', console.error.bind(console, 'connection error:'));
+conn.on('error', (err) =>{
+  console.log('Connection error: ' +err);
+});
 
 // Init our app variable through express
 const app = express();
