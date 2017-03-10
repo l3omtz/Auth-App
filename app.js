@@ -39,6 +39,12 @@ app.use(express.static(path.join(__dirname, 'client')));
 // Body parser middleware -- parses json for us to use
 app.use(bodyParser.json());
 
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./config/passport')(passport);
+
 // Any routes with users will go to usres/ link
 app.use('/users', users)
 
