@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const config = require('../config/database');
 
-// Create user Schema
+// (1) Create user Schema
 const UserSchema = mongoose.Schema({
   name: {
     type: String
@@ -22,7 +22,7 @@ const UserSchema = mongoose.Schema({
 });
 
 // Create global var for user -- export model with user of type UserSchema
-const User = module.exports = mongoose.model('User', UserSchema);
+const User = module.exports = mongoose.model('User', UserSchema); // <- what will be inporting in users.js
 
 // Create functions to call outside this file
 module.exports.getUserById = function(id, callback){ // <- Takes in id and callback
@@ -34,16 +34,16 @@ module.exports.getUserByUsername = function(username, callback){ // <- Takes in 
   User.findOne(query, callback); // <- Calls the findOne function which takes in a query
 }
 
-// Add user function -- export
+// (2) Add user function -- export
 module.exports.addUser = function(newUser, callback){
-  // Hash the password -- generate salt
+  // a. Hash the password -- generate salt
   bcrypt.genSalt(10, (err, salt) => {
-    // Call in the password from new user
+    // b. Call in the password from new user
     bcrypt.hash(newUser.password, salt, (err, hash) =>{
       if(err) throw err;
-      // Make w/e password gave in form and make it to hash
+      // c. Make w/e password gave in form and make it to hash
       newUser.password = hash;
-      newUser.save(callback);
+      newUser.save(callback); // <- d. Will be the resonse of the function to post to DB
     });
   });
 
