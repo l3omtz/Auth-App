@@ -5,7 +5,7 @@ const express = require('express');
 const router = express.Router();
 
 // Register the REGISTER route
-router.get('/register', (req, res, next) => {
+router.post('/register', (req, res, next) => {
   res.send('REGISTER USER')
 });
 
@@ -17,11 +17,6 @@ router.post('/authenticate', (req, res, next) => {
 // Register the PROFILE route -- This route will be our auth token page
 router.get('/profile', (req, res, next) => {
   res.send('PROFILE')
-});
-
-// Register the VALIDATE route -- This route will validate our token
-router.get('/validate', (req, res, next) => {
-  res.send('VALIDATE')
 });
 
 // Export the router for use
