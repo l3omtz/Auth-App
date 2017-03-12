@@ -32,7 +32,7 @@ app.use('/users', users)
 const home = require('./routes/home');
 app.use('/', home);
 
-// Create Index start route - Original Code 
+// Create Index start route - Original Code
 // app.get('/', (req, res, err) => {
 //   res.send('Invalid Endpoints');
 // });

@@ -5,18 +5,19 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start" : "node app"
+    "start": "node app"
   },
-  "dependencies":{
-    "express":"*",
-    "mongoose":"*",
-    "bcryptjs":"*",
+  "dependencies": {
+    "bcryptjs": "*",
+    "body-parser": "*",
     "cors": "*",
     "debug": "~2.6.0",
+    "express": "*",
     "jsonwebtoken": "*",
-    "body-parser":"*",
-    "passport":"*",
-    "passport-jwt":"*"
+    "mongojs": "^2.4.0",
+    "mongoose": "*",
+    "passport": "*",
+    "passport-jwt": "*"
   },
   "author": "Leo Martinez",
   "license": "ISC"

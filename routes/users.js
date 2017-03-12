@@ -52,7 +52,7 @@ router.post('/authenticate', (req, res, next) => {
         //  Our respose to our front end so profile data can be displayed
         res.json({
           success: true,
-          token: 'JWT' +token,  // <- Send token because user was able to login
+          token: 'JWT ' +token,  // <- Send token because user was able to login
           user:{                // <- Building own user object so password wont be sent back
             id: user._id,
             name: user.name,
@@ -69,8 +69,15 @@ router.post('/authenticate', (req, res, next) => {
 }); // End Authenticate .post
 
 // Register the PROFILE route -- This route will be our auth token page
-router.get('/profile', (req, res, next) => {
-  res.send('PROFILE')
+router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res, next) => {
+res.json({user: req.user});
+});
+
+router.get('/profile/:id', (req, res, next) => {
+  db.users.findOne({_id:mongojs.ObjectId(req.params.id)}, (err, user) => {
+    if(err) throw err;
+    res.json(user);
+  });
 });
 
 // Export the router for use
