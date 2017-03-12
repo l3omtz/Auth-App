@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-const config = require('../config/database');
+// const config = require('../config/database');
 
 // (1) Create user Schema
 const UserSchema = mongoose.Schema({
@@ -30,8 +30,9 @@ module.exports.getUserById = function(id, callback){ // <- Takes in id and callb
 }
 // Get user by usernmae function
 module.exports.getUserByUsername = function(username, callback){ // <- Takes in username and callback
-  const query = {username:username} // <- Query username of username
-  User.findOne(query, callback); // <- Calls the findOne function which takes in a query
+  const query = {username: username} // <- Query username of username
+  User.findOne(query, callback); // <- Calls the findOne function which finds the given user from the User DB
+                                    // and returns the whole user (if found) with the callback
 }
 
 // (2) Add user function -- export
@@ -47,4 +48,13 @@ module.exports.addUser = function(newUser, callback){
     });
   });
 
+}
+
+// Compare password function to login
+module.exports.comparePassword = function(candidatePassword, hash, callback){ // <- takes in input password and hashed password with a callback
+  // Call the compare function takes in the params givein and an error
+  bcrypt.compare(candidatePassword, hash, (err, isMatch ) =>{
+    if(err) throw err; // <- If error return the error
+    callback(null, isMatch); // <- If matched return to the response(isMatch)
+  });
 }

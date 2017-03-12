@@ -26,9 +26,16 @@ const app = express();
 
 // Users routes file
 const users = require('./routes/users');
+// Any routes with users will go to usres/ link
+app.use('/users', users)
 
-// var for port we want to use
-const port = 3000;
+const home = require('./routes/home');
+app.use('/', home);
+
+// Create Index start route - Original Code 
+// app.get('/', (req, res, err) => {
+//   res.send('Invalid Endpoints');
+// });
 
 // Cors middleware -- For server on diffrent domains
 app.use(cors());
@@ -45,13 +52,8 @@ app.use(passport.session());
 
 require('./config/passport')(passport);
 
-// Any routes with users will go to usres/ link
-app.use('/users', users)
-
-// Create Index start route
-app.get('/', (req, res, err) => {
-  res.send('Invalid Endpoints');
-});
+// var for port we want to use
+const port = 3000;
 
 // Call app var to listen to our port -- Starts Server
 app.listen(port, () => {
