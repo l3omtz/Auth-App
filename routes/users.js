@@ -73,12 +73,7 @@ router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res,
   res.json({user: req.user});
 });
 
-router.get('/profile/:id', (req, res, next) => {
-  db.users.findOne({_id:mongojs.ObjectId(req.params.id)}, (err, user) => {
-    if(err) throw err;
-    res.json(user);
-  });
-});
+
 
 // Export the router for use
 module.exports = router;
