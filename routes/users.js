@@ -70,7 +70,7 @@ router.post('/authenticate', (req, res, next) => {
 
 // Register the PROFILE route -- This route will be our auth token page
 router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res, next) => {
-res.json({user: req.user});
+  res.json({user: req.user});
 });
 
 router.get('/profile/:id', (req, res, next) => {

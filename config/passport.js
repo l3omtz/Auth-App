@@ -21,7 +21,7 @@ module.exports = function(passport){
   passport.use(new JwtStrategy(opts, (jwt_payload, done) => { // <- callback will give us payload
     console.log(jwt_payload);
     // Call model user  ID
-    User.getUserById(jwt_payload._doc._id, (err, user) =>{ // <-- come back to this 
+    User.getUserById(jwt_payload._doc._id, (err, user) =>{ // <-- come back to this
       if(err){
         return done(err, false); // <- If error return done err and false
       }

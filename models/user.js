@@ -22,7 +22,7 @@ const UserSchema = mongoose.Schema({
 });
 
 // Create global var for user -- export model with user of type UserSchema
-const User = module.exports = mongoose.model('User', UserSchema); // <- what will be inporting in users.js
+const User = module.exports = mongoose.model('Users', UserSchema); // <- what will be inporting in users.js
 
 // Create functions to call outside this file
 module.exports.getUserById = function(id, callback){ // <- Takes in id and callback
