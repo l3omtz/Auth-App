@@ -8,18 +8,15 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li routerLinkActive="active"><a routerLink="Home">Home</a></li>
-        <li routerLinkActive="active"><a routerLink="Dashboard">Dashboard</a></li>
+        <li routerLinkActive="active"><a routerLink="home">Home</a></li>
+        <li routerLinkActive="active"><a routerLink="dashboard">Dashboard</a></li>
         <li routerLinkActive="active"><a routerLink="profile">Profile</a></li>
         <li routerLinkActive="active"><a routerLink="login">Login</a></li>
+        <li routerLinkActive="active"><a routerLink="register">Register</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 <div class="container">
-  <login></login>
-  <dashboard></dashboard>
-  <home></home>
-  <profile></profile>
-  <register></register>
+  <router-outlet></router-outlet>
 </div>

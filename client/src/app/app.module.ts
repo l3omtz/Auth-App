@@ -11,6 +11,10 @@ import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
 
+// Routing
+import { routing } from './app.routing';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +27,8 @@ import { RegisterComponent } from './components/register/register.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    routing
   ],
   exports: [],
   providers: [],
