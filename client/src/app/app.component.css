@@ -1,0 +1,25 @@
+.jumbo-img{
+  background-image: url('../assets/img/jumo.jpg');
+  background-size:cover;
+  height:92vh;
+}
+.hero-title{
+  /*margin-top:10em;
+  width: 45%;
+  border: 2px solid white;
+  margin: 0 auto;
+  padding: 53px;*/
+  color:white;
+}
+.arrow-down{
+  margin-top: 43vh;
+  color: white;
+}
+.buttons{
+  padding-top: 20px;
+}
+.btn {
+    border-width: 2px;
+    width: 90px;
+    margin-left: 10px;
+}

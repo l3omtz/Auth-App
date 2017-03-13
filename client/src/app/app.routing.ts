@@ -12,6 +12,7 @@ import { RegisterComponent } from './components/register/register.component';
 // Export to use
 export const routing = RouterModule.forRoot([
   { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'profile', component: ProfileComponent },
