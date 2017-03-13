@@ -1,7 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
+
+// Froms
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 // Import components
 import { AppComponent } from './app.component';
@@ -28,6 +32,8 @@ import { routing } from './app.routing';
     BrowserModule,
     FormsModule,
     HttpModule,
+    CommonModule,
+    ReactiveFormsModule,
     routing
   ],
   exports: [],
