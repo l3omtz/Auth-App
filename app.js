@@ -4,22 +4,23 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const passport = require('passport');
-const mongoose = require('mongoose');
+
+// const mongoose = require('mongoose');
 
 // Create mongo database
-const mongooseDB = 'mongodb://admin:admin@ds155428.mlab.com:55428/tiktalk2go';
+// const mongooseDB = 'mongodb://admin:admin@ds155428.mlab.com:55428/tiktalk2go';
 // Connect to database with mongoose
-mongoose.connect(mongooseDB);
-
-var conn = mongoose.connection;
-// On connection
-conn.on('connected', () =>{
-  console.log('connected to database');
-});
-// On error
-conn.on('error', (err) =>{
-  console.log('Connection error: ' +err);
-});
+// mongoose.connect(mongooseDB);
+//
+// var conn = mongoose.connection;
+// // On connection
+// conn.on('connected', () =>{
+//   console.log('connected to database');
+// });
+// // On error
+// conn.on('error', (err) =>{
+//   console.log('Connection error: ' +err);
+// });
 
 // Init our app variable through express
 const app = express();
@@ -29,14 +30,8 @@ const users = require('./routes/users');
 // Any routes with users will go to usres/ link
 app.use('/users', users)
 
-const home = require('./routes/home');
-app.use('/', home);
-
-// Create Index start route - Original Code
-// app.get('/', (req, res, err) => {
-//   res.send('Invalid Endpoints');
-// });
-
+// var for port we want to use
+const port = 3000;
 // Cors middleware -- For server on diffrent domains
 app.use(cors());
 
@@ -52,8 +47,10 @@ app.use(passport.session());
 
 require('./config/passport')(passport);
 
-// var for port we want to use
-const port = 3000;
+// Create Index start route - Original Code
+app.get('/', (req, res, next) => {
+  res.send('Invalid Endpoints');
+});
 
 // Call app var to listen to our port -- Starts Server
 app.listen(port, () => {

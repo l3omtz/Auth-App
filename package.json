@@ -10,10 +10,11 @@
   "dependencies": {
     "bcryptjs": "*",
     "body-parser": "*",
-    "cors": "*",
+    "cors": "^2.8.1",
     "debug": "~2.6.0",
     "express": "*",
     "jsonwebtoken": "*",
+    "mongojs": "^2.4.0",
     "mongoose": "*",
     "passport": "*",
     "passport-jwt": "*"

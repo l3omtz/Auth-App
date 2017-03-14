@@ -8,6 +8,8 @@ import {FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms';
 // Import User Model
 import { UserModel } from '../model/user';
 
+// Services
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'register',
@@ -22,7 +24,7 @@ export class RegisterComponent implements OnInit {
   user = new UserModel();
 
   //Make private so wont effect other routs - Create instance of FormBuilder
-  constructor(fb: FormBuilder) {
+  constructor(fb: FormBuilder, private _auth: AuthService, private route: Router) {
     //Model Driven Form
     this.form = fb.group({
       name: [, Validators.required],
@@ -33,7 +35,16 @@ export class RegisterComponent implements OnInit {
   }
 
   registerForm() {
-    console.log(this.user);
+    // Register user
+    this._auth.registerUser(this.user).subscribe(data => {
+      if (data.success) {
+        console.log("created a user");
+        this.route.navigate(['/login']);
+      } else {
+        console.log("nope err err err");
+        this.route.navigate(['/home']);
+      }
+    });
   }
   ngOnInit() {
 
