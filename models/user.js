@@ -29,11 +29,11 @@ const bcrypt = require('bcryptjs');
 //   User.findById(id, callback); // <- Referse to the User we created & calls the findById mongoose function
 // }
 // // Get user by usernmae function
-// module.exports.getUserByUsername = function(username, callback){ // <- Takes in username and callback
-//   const query = {username: username} // <- Query username of username
-//   User.findOne(query, callback); // <- Calls the findOne function which finds the given user from the User DB
-//                                     // and returns the whole user (if found) with the callback
-// }
+module.exports.getUserByUsername = function(username, callback){ // <- Takes in username and callback
+  const query = {username: username} // <- Query username of username
+  User.findOne(query, callback); // <- Calls the findOne function which finds the given user from the User DB
+                                    // and returns the whole user (if found) with the callback
+}
 //
 // (2) Add user function -- export
 module.exports.addUser = function(newUser, callback){
@@ -50,11 +50,11 @@ module.exports.addUser = function(newUser, callback){
 
 }
 //
-// // Compare password function to login
-// module.exports.comparePassword = function(candidatePassword, hash, callback){ // <- takes in input password and hashed password with a callback
-//   // Call the compare function takes in the params givein and an error
-//   bcrypt.compare(candidatePassword, hash, (err, isMatch ) =>{
-//     // if(err) throw err; // <- If error return the error
-//     callback(null, isMatch); // <- If matched return to the response(isMatch)
-//   });
-// }
+// Compare password function to login
+module.exports.comparePassword = function(candidatePassword, hash, callback){ // <- takes in input password and hashed password with a callback
+  // Call the compare function takes in the params givein and an error
+  bcrypt.compare(candidatePassword, hash, (err, res ) =>{
+    if(err) throw err; // <- If error return the error
+    callback(null, res); // <- If matched return to the response(isMatch)
+  });
+}

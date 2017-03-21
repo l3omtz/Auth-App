@@ -17,7 +17,6 @@ import { AuthService } from '../../services/auth.service';
 })
 
 export class RegisterComponent implements OnInit {
-  titleUser: string;
   form: FormGroup;
 
   // User model
@@ -37,13 +36,11 @@ export class RegisterComponent implements OnInit {
   registerForm() {
     // Register user
     this._auth.registerUser(this.user).subscribe(data => {
-      console.log(data);
-      if (data.success) {
+      if (this.form) {
         console.log("created a user");
         this.route.navigate(['/login']);
       } else {
-        console.log("nope err err err");
-        this.route.navigate(['/home']);
+        console.log("Please fill out form correctly");
       }
     });
   }
