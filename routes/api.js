@@ -68,12 +68,10 @@ router.post('/authenticate', (req, res, next) => {
   const query = {username: username} // <- Query username of username
 
   // c. Get user by the username -- function created in user.js
-  db.users.find(query, (err, user) => {
-    console.log(user);// <- User given back from database
-    console.log(user[0].username);
+  db.users.find(query, (err, user) => { // <- if the user is found get the user db if not send err
     if(err) throw err; // <- If thers an error return errro
-    if(!user[0].username) // <- If theres not a user that was inputed from form return not found message
-      return res.json({success: false, msg: 'USER NOT FOUND'});
+    if(!user[0]) // <- If theres not a user that was inputed from form return not found message
+      return res.send({success: false});
 
     // ELSE If user IS FOUND compare password that was inputed with the hash passowrd return from callback(err, user)
     bcrypt.compare(password, user[0].password, (err, isMatch) =>{
@@ -90,15 +88,14 @@ router.post('/authenticate', (req, res, next) => {
           success: true,
           token: 'JWT ' +token,  // <- Send token because user was able to login
           user:{                // <- Building own user object so password wont be sent back
-            id: user._id,
-            name: user.name,
-            username: user.username,
-            email: user.email
+            id: user[0]._id,
+            name: user[0].name,
+            username: user[0].username,
+            email: user[0].email
           }
         });
-
       }else{
-        return res.json({success: false, msg: 'WRONG PASSWORD'});
+        return res.json({success: false});
       }
     });
   });

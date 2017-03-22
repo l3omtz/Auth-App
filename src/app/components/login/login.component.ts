@@ -32,8 +32,11 @@ export class LoginComponent implements OnInit {
 
   login() {
     this._auth.authenticateUser(this.user).subscribe(data => {
-      console.log(this.user);
-      console.log(data);
+      console.log(data); // <- comment our so data wont show
+      if (!data.success) {
+        console.log("nope");
+      }
+
     });
   }
 
