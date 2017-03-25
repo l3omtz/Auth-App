@@ -1,17 +1,31 @@
-# Client
+# DocNow
+Fastest way to get help online
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.1.
+Login or create a user off the bat. Authenticates user and navigates to dashboard and stores Token in database. Once loged out it clears the token. Only users with the right token have  access to ertain pages.
 
-## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+When adding a user it hashes password and saves it to mongo database hosted on mLab.
+Build with bootstrap so it gives it a very professinal look.
+
+## Built With
+* [MongoDB](https://www.mongodb.com/)
+* [Express](https://expressjs.com/)
+* [Angular](https://angular.io/)
+* [NodeJS](https://nodejs.org/en/)
+
+* [mLab](https://mlab.com/)
+* [PassportJs](http://passportjs.org/) with JWT token
+* [BycrptJs](https://github.com/dcodeIO/bcrypt.js) for hash passwords
 
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
 
-## Build
+## Build and Development Server
+Both hosted on `http://localhost:3000/`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Run `npm run build` and navigate to `http://localhost:3000/`. The app will automatically reload if you change any of the source files.
+
+Navigate to `http://localhost:3000/api for api
 
 ## Running unit tests
 

@@ -2,6 +2,9 @@
   <h3>Login</h3>
   <form class="col-md-12" [formGroup]="form" (ngSubmit)="login()">
     <div class="form-group col-md-12">
+      <div class="alert alert-danger" *ngIf="!auth">
+        <p>Sorry, you entered wrong username or password</p>
+      </div>
       <input type="text" name="username" [(ngModel)]="user.username"
       class="form-control"
       formControlName="username"

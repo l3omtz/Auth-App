@@ -3,6 +3,8 @@ const router = express.Router();
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const config = require('../config/database');
+
+// Password Hash
 const bcrypt = require('bcryptjs');
 
 // MLab connetion
@@ -12,12 +14,8 @@ const db = mongojs('mongodb://admin:admin@ds155428.mlab.com:55428/tiktalk2go', [
 // Bring in user model from user.js
 const User = require('../models/user');
 
-router.get('/', (req, res) => {
-  res.send('api works');
-});
-
 // Get all users /users/
-router.get('/getall', (req, res, next) => {
+router.get('/user', (req, res, next) => {
   db.users.find((err, users) => {
     if(err){
       res.send(err);
@@ -28,8 +26,8 @@ router.get('/getall', (req, res, next) => {
   });
 });
 
-// Get single user
-router.get('/:id', (req, res, next) => {
+// Get single user/
+router.get('/user/:id', (req, res, next) => {
   db.users.findOne({_id: mongojs.ObjectId(req.params.id)},(err, user) => {
     if(err){
       res.send(err);
@@ -101,8 +99,14 @@ router.post('/authenticate', (req, res, next) => {
   });
 });
 
+// This route will be our auth token page -- and shows profile info -- passport.authenticate('jwt', {session:false}),
+router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res) => {
+  res.json({user: req.user});
+});
+
+
 // Delete User
-router.delete('/:id', (req, res, next) => {
+router.delete('/user/:id', (req, res, next) => {
   db.users.remove({_id: mongojs.ObjectId(req.params.id)},(err, user) => {
     if(err){
       res.send(err);
@@ -112,7 +116,7 @@ router.delete('/:id', (req, res, next) => {
 });
 
 // Update
-router.put('/:id', (req, res, next) => {
+router.put('/user/:id', (req, res, next) => {
   var user = req.body;
   var updateUser = {};
 

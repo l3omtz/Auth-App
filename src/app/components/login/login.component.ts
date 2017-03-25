@@ -22,6 +22,8 @@ export class LoginComponent implements OnInit {
   // login model
   user = new UserModel();
 
+  auth = true;
+
   constructor(fb: FormBuilder, private _auth: AuthService, private route: Router) {
     //Model Driven Form
     this.form = fb.group({
@@ -32,11 +34,14 @@ export class LoginComponent implements OnInit {
 
   login() {
     this._auth.authenticateUser(this.user).subscribe(data => {
-      console.log(data); // <- comment our so data wont show
-      if (!data.success) {
-        console.log("nope");
+      //console.log(data); // <- comment out so data wont show
+      if (data.success) { // <- data is what is being recieved from db when auth is met - success = true
+        this.auth = true; // <- Bootstrap alert msg
+        this._auth.storeUSerData(data.token, data.user) // <- funciton from services taken token and the user
+        this.route.navigate(['/dashboard']);
+      } else {
+        this.auth = false; // <- IF it was a bad auht then send error msg to user 
       }
-
     });
   }
 

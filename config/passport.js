@@ -17,10 +17,10 @@ module.exports = function(passport){
   // Get secret key from our config db file
   opts.secretOrKey = config.secret;
   passport.use(new JwtStrategy(opts, (jwt_payload, done) => { // <- callback will give us payload
-    console.log(jwt_payload);
-    // Call model user  ID
-    db.users.findOne({_id: jwt_payload.sub},(err, user) =>{
-    //db.getUserById(jwt_payload._id, (err, user) =>{ // <-- come back to this
+    // console.log(jwt_payload);
+     // Call model user  ID
+    db.users.findOne({_id: mongojs.ObjectId(jwt_payload._id)},(err, user) =>{
+
       if(err){
         return done(err, false); // <- If error return done err and false
       }
