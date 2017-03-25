@@ -21,6 +21,9 @@ import { AuthService } from './services/auth.service';
 // Routing
 import { routing } from './app.routing';
 
+// Guard
+import { AuthGuard } from './guards/auth.guard';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +43,7 @@ import { routing } from './app.routing';
     routing
   ],
   exports: [],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

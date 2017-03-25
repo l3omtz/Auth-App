@@ -14,7 +14,6 @@ export class AppComponent {
   constructor(private _auth: AuthService) { }
 
   onLogout() {
-    console.log('peace!');
     this._auth.logoutUser();
   }
 
