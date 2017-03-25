@@ -12,8 +12,8 @@ const api = require('./routes/api');
 // Init our app variable through express
 const app = express();
 
-// var for port we want to use
-const port = process.env.PORT || 3000;
+// var for port we want to use || 3000
+const port = process.env.PORT || 8080;
 
 // Cors middleware -- For server on diffrent domains
 // app.use(cors());
