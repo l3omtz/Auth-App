@@ -10,6 +10,9 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
+  "engines": {
+    "node": "v6.9.1"
+  },
   "private": true,
   "dependencies": {
     "@angular/common": "^2.4.0",
